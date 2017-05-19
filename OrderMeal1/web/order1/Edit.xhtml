@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="Order1EditDlg" widgetVar="Order1EditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditOrder1Title}">
+            <h:form id="Order1EditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{order1Controller.selected != null}">
+                        <p:outputLabel value="#{bundle.EditOrder1Label_order1PK_idOrder}" for="order1PK_idOrder" />
+                        <p:inputText id="order1PK_idOrder" value="#{order1Controller.selected.order1PK.idOrder}" title="#{bundle.EditOrder1Title_order1PK_idOrder}" required="true" requiredMessage="#{bundle.EditOrder1RequiredMessage_order1PK_idOrder}"/>
+                        <p:outputLabel value="#{bundle.EditOrder1Label_ordTotalPago}" for="ordTotalPago" />
+                        <p:inputText id="ordTotalPago" value="#{order1Controller.selected.ordTotalPago}" title="#{bundle.EditOrder1Title_ordTotalPago}" required="true" requiredMessage="#{bundle.EditOrder1RequiredMessage_ordTotalPago}"/>
+                        <p:outputLabel value="#{bundle.EditOrder1Label_ordFechaRetiro}" for="ordFechaRetiro" />
+                        <p:calendar id="ordFechaRetiro" pattern="MM/dd/yyyy" value="#{order1Controller.selected.ordFechaRetiro}" title="#{bundle.EditOrder1Title_ordFechaRetiro}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditOrder1Label_ordFechaEmision}" for="ordFechaEmision" />
+                        <p:calendar id="ordFechaEmision" pattern="MM/dd/yyyy" value="#{order1Controller.selected.ordFechaEmision}" title="#{bundle.EditOrder1Title_ordFechaEmision}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditOrder1Label_bebestible}" for="bebestible" />
+                        <p:selectOneMenu id="bebestible" value="#{order1Controller.selected.bebestible}" required="true" requiredMessage="#{bundle.EditOrder1RequiredMessage_bebestible}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{bebestibleController.itemsAvailableSelectOne}"
+                                           var="bebestibleItem"
+                                           itemValue="#{bebestibleItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditOrder1Label_cliente}" for="cliente" />
+                        <p:selectOneMenu id="cliente" value="#{order1Controller.selected.cliente}" required="true" requiredMessage="#{bundle.EditOrder1RequiredMessage_cliente}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
+                                           var="clienteItem"
+                                           itemValue="#{clienteItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditOrder1Label_edificio}" for="edificio" />
+                        <p:selectOneMenu id="edificio" value="#{order1Controller.selected.edificio}" required="true" requiredMessage="#{bundle.EditOrder1RequiredMessage_edificio}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{edificioController.itemsAvailableSelectOne}"
+                                           var="edificioItem"
+                                           itemValue="#{edificioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditOrder1Label_ensalada}" for="ensalada" />
+                        <p:selectOneMenu id="ensalada" value="#{order1Controller.selected.ensalada}" required="true" requiredMessage="#{bundle.EditOrder1RequiredMessage_ensalada}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{ensaladaController.itemsAvailableSelectOne}"
+                                           var="ensaladaItem"
+                                           itemValue="#{ensaladaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditOrder1Label_plato}" for="plato" />
+                        <p:selectOneMenu id="plato" value="#{order1Controller.selected.plato}" required="true" requiredMessage="#{bundle.EditOrder1RequiredMessage_plato}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{platoController.itemsAvailableSelectOne}"
+                                           var="platoItem"
+                                           itemValue="#{platoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditOrder1Label_postre}" for="postre" />
+                        <p:selectOneMenu id="postre" value="#{order1Controller.selected.postre}" required="true" requiredMessage="#{bundle.EditOrder1RequiredMessage_postre}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{postreController.itemsAvailableSelectOne}"
+                                           var="postreItem"
+                                           itemValue="#{postreItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditOrder1Label_tipoPago}" for="tipoPago" />
+                        <p:selectOneMenu id="tipoPago" value="#{order1Controller.selected.tipoPago}" required="true" requiredMessage="#{bundle.EditOrder1RequiredMessage_tipoPago}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tipoPagoController.itemsAvailableSelectOne}"
+                                           var="tipoPagoItem"
+                                           itemValue="#{tipoPagoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditOrder1Label_usuario}" for="usuario" />
+                        <p:selectOneMenu id="usuario" value="#{order1Controller.selected.usuario}" required="true" requiredMessage="#{bundle.EditOrder1RequiredMessage_usuario}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
+                                           var="usuarioItem"
+                                           itemValue="#{usuarioItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{order1Controller.update}" value="#{bundle.Save}" update="display,:Order1ListForm:datalist,:growl" oncomplete="handleSubmit(args, 'Order1EditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="Order1EditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

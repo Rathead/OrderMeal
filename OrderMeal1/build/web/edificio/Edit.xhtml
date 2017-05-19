@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EdificioEditDlg" widgetVar="EdificioEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEdificioTitle}">
+            <h:form id="EdificioEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{edificioController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEdificioLabel_idEdificio}" for="idEdificio" />
+                        <p:inputText id="idEdificio" value="#{edificioController.selected.idEdificio}" title="#{bundle.EditEdificioTitle_idEdificio}" required="true" requiredMessage="#{bundle.EditEdificioRequiredMessage_idEdificio}"/>
+                        <p:outputLabel value="#{bundle.EditEdificioLabel_ediDireccion}" for="ediDireccion" />
+                        <p:inputText id="ediDireccion" value="#{edificioController.selected.ediDireccion}" title="#{bundle.EditEdificioTitle_ediDireccion}" required="true" requiredMessage="#{bundle.EditEdificioRequiredMessage_ediDireccion}"/>
+                        <p:outputLabel value="#{bundle.EditEdificioLabel_ediNombre}" for="ediNombre" />
+                        <p:inputText id="ediNombre" value="#{edificioController.selected.ediNombre}" title="#{bundle.EditEdificioTitle_ediNombre}" required="true" requiredMessage="#{bundle.EditEdificioRequiredMessage_ediNombre}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{edificioController.update}" value="#{bundle.Save}" update="display,:EdificioListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EdificioEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EdificioEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PlatoEditDlg" widgetVar="PlatoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPlatoTitle}">
+            <h:form id="PlatoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{platoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPlatoLabel_idPlato}" for="idPlato" />
+                        <p:inputText id="idPlato" value="#{platoController.selected.idPlato}" title="#{bundle.EditPlatoTitle_idPlato}" required="true" requiredMessage="#{bundle.EditPlatoRequiredMessage_idPlato}"/>
+                        <p:outputLabel value="#{bundle.EditPlatoLabel_plaNombre}" for="plaNombre" />
+                        <p:inputText id="plaNombre" value="#{platoController.selected.plaNombre}" title="#{bundle.EditPlatoTitle_plaNombre}" required="true" requiredMessage="#{bundle.EditPlatoRequiredMessage_plaNombre}"/>
+                        <p:outputLabel value="#{bundle.EditPlatoLabel_plaPrecio}" for="plaPrecio" />
+                        <p:inputText id="plaPrecio" value="#{platoController.selected.plaPrecio}" title="#{bundle.EditPlatoTitle_plaPrecio}" required="true" requiredMessage="#{bundle.EditPlatoRequiredMessage_plaPrecio}"/>
+                        <p:outputLabel value="#{bundle.EditPlatoLabel_plaDetalles}" for="plaDetalles" />
+                        <p:inputText id="plaDetalles" value="#{platoController.selected.plaDetalles}" title="#{bundle.EditPlatoTitle_plaDetalles}" />
+                        <p:outputLabel value="#{bundle.EditPlatoLabel_plaEspecial}" for="plaEspecial" />
+                        <p:selectBooleanCheckbox id="plaEspecial" value="#{platoController.selected.plaEspecial}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{platoController.update}" value="#{bundle.Save}" update="display,:PlatoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PlatoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PlatoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

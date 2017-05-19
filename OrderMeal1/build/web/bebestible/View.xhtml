@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BebestibleViewDlg" widgetVar="BebestibleViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewBebestibleTitle}">
+            <h:form id="BebestibleViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{bebestibleController.selected != null}">
+                        <h:outputText value="#{bundle.ViewBebestibleLabel_idBebestible}"/>
+                        <h:outputText value="#{bebestibleController.selected.idBebestible}" title="#{bundle.ViewBebestibleTitle_idBebestible}"/>
+                        <h:outputText value="#{bundle.ViewBebestibleLabel_bebNombre}"/>
+                        <h:outputText value="#{bebestibleController.selected.bebNombre}" title="#{bundle.ViewBebestibleTitle_bebNombre}"/>
+                        <h:outputText value="#{bundle.ViewBebestibleLabel_bebPrecio}"/>
+                        <h:outputText value="#{bebestibleController.selected.bebPrecio}" title="#{bundle.ViewBebestibleTitle_bebPrecio}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="BebestibleViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

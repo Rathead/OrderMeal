@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EnsaladaCreateDlg" widgetVar="EnsaladaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEnsaladaTitle}">
+            <h:form id="EnsaladaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ensaladaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEnsaladaLabel_idEnsalada}" for="idEnsalada" />
+                        <p:inputText id="idEnsalada" value="#{ensaladaController.selected.idEnsalada}" title="#{bundle.CreateEnsaladaTitle_idEnsalada}" required="true" requiredMessage="#{bundle.CreateEnsaladaRequiredMessage_idEnsalada}"/>
+                        <p:outputLabel value="#{bundle.CreateEnsaladaLabel_ensNombre}" for="ensNombre" />
+                        <p:inputText id="ensNombre" value="#{ensaladaController.selected.ensNombre}" title="#{bundle.CreateEnsaladaTitle_ensNombre}" required="true" requiredMessage="#{bundle.CreateEnsaladaRequiredMessage_ensNombre}"/>
+                        <p:outputLabel value="#{bundle.CreateEnsaladaLabel_ensPrecio}" for="ensPrecio" />
+                        <p:inputText id="ensPrecio" value="#{ensaladaController.selected.ensPrecio}" title="#{bundle.CreateEnsaladaTitle_ensPrecio}" required="true" requiredMessage="#{bundle.CreateEnsaladaRequiredMessage_ensPrecio}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ensaladaController.create}" value="#{bundle.Save}" update="display,:EnsaladaListForm:datalist,:growl" oncomplete="handleSubmit(args,'EnsaladaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EnsaladaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

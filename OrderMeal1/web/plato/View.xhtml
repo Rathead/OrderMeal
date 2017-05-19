@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PlatoViewDlg" widgetVar="PlatoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPlatoTitle}">
+            <h:form id="PlatoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{platoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPlatoLabel_idPlato}"/>
+                        <h:outputText value="#{platoController.selected.idPlato}" title="#{bundle.ViewPlatoTitle_idPlato}"/>
+                        <h:outputText value="#{bundle.ViewPlatoLabel_plaNombre}"/>
+                        <h:outputText value="#{platoController.selected.plaNombre}" title="#{bundle.ViewPlatoTitle_plaNombre}"/>
+                        <h:outputText value="#{bundle.ViewPlatoLabel_plaPrecio}"/>
+                        <h:outputText value="#{platoController.selected.plaPrecio}" title="#{bundle.ViewPlatoTitle_plaPrecio}"/>
+                        <h:outputText value="#{bundle.ViewPlatoLabel_plaDetalles}"/>
+                        <h:outputText value="#{platoController.selected.plaDetalles}" title="#{bundle.ViewPlatoTitle_plaDetalles}"/>
+                        <h:outputText value="#{bundle.ViewPlatoLabel_plaEspecial}"/>
+                        <p:selectBooleanCheckbox value="#{platoController.selected.plaEspecial}" disabled="true"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PlatoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PostreEditDlg" widgetVar="PostreEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPostreTitle}">
+            <h:form id="PostreEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{postreController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPostreLabel_idPostre}" for="idPostre" />
+                        <p:inputText id="idPostre" value="#{postreController.selected.idPostre}" title="#{bundle.EditPostreTitle_idPostre}" required="true" requiredMessage="#{bundle.EditPostreRequiredMessage_idPostre}"/>
+                        <p:outputLabel value="#{bundle.EditPostreLabel_posNombre}" for="posNombre" />
+                        <p:inputText id="posNombre" value="#{postreController.selected.posNombre}" title="#{bundle.EditPostreTitle_posNombre}" required="true" requiredMessage="#{bundle.EditPostreRequiredMessage_posNombre}"/>
+                        <p:outputLabel value="#{bundle.EditPostreLabel_posPrecio}" for="posPrecio" />
+                        <p:inputText id="posPrecio" value="#{postreController.selected.posPrecio}" title="#{bundle.EditPostreTitle_posPrecio}" required="true" requiredMessage="#{bundle.EditPostreRequiredMessage_posPrecio}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{postreController.update}" value="#{bundle.Save}" update="display,:PostreListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PostreEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PostreEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

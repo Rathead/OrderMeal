@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EdificioCreateDlg" widgetVar="EdificioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEdificioTitle}">
+            <h:form id="EdificioCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{edificioController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEdificioLabel_idEdificio}" for="idEdificio" />
+                        <p:inputText id="idEdificio" value="#{edificioController.selected.idEdificio}" title="#{bundle.CreateEdificioTitle_idEdificio}" required="true" requiredMessage="#{bundle.CreateEdificioRequiredMessage_idEdificio}"/>
+                        <p:outputLabel value="#{bundle.CreateEdificioLabel_ediDireccion}" for="ediDireccion" />
+                        <p:inputText id="ediDireccion" value="#{edificioController.selected.ediDireccion}" title="#{bundle.CreateEdificioTitle_ediDireccion}" required="true" requiredMessage="#{bundle.CreateEdificioRequiredMessage_ediDireccion}"/>
+                        <p:outputLabel value="#{bundle.CreateEdificioLabel_ediNombre}" for="ediNombre" />
+                        <p:inputText id="ediNombre" value="#{edificioController.selected.ediNombre}" title="#{bundle.CreateEdificioTitle_ediNombre}" required="true" requiredMessage="#{bundle.CreateEdificioRequiredMessage_ediNombre}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{edificioController.create}" value="#{bundle.Save}" update="display,:EdificioListForm:datalist,:growl" oncomplete="handleSubmit(args,'EdificioCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EdificioCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
